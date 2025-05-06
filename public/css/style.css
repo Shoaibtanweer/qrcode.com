@@ -1,0 +1,588 @@
+/* --- Main Stylesheet (style.css) --- */
+
+/* --- Root Variables (Light Mode Defaults) --- */
+:root {
+    --primary-color: #007bff; /* Bootstrap Blue */
+    --primary-color-rgb: 0, 123, 255; /* RGB for rgba() */
+    --secondary-color: #6c757d; /* Gray */
+    --accent-color: #17a2b8;  /* Teal Info */
+    --success-color: #28a745; /* Green */
+    --warning-color: #ffc107; /* Yellow */
+    --danger-color: #dc3545; /* Red */
+    --light-color: #f8f9fa;
+    --dark-color: #343a40;
+
+    --background-color: #ffffff; /* White background */
+    --card-bg-color: #ffffff;    /* Card background */
+    --text-color: #212529;       /* Default text color (dark gray) */
+    --text-color-secondary: #6c757d; /* Lighter text */
+    --heading-color: #343a40;      /* Heading color */
+    --border-color: #dee2e6;       /* Standard border */
+    --input-bg-color: #ffffff;    /* Input background */
+    --shadow-color: rgba(0, 0, 0, 0.1); /* Soft shadow */
+
+    /* Footer Specific */
+    --footer-bg-color: #212529; /* As requested */
+    --footer-text-color: rgba(255, 255, 255, 0.75); /* Light text for footer */
+    --footer-link-color: rgba(255, 255, 255, 0.9);
+
+    /* Button Colors */
+    --button-text-color: #ffffff;
+    --primary-button-bg: var(--primary-color);
+    --secondary-button-bg: var(--secondary-color);
+    --secondary-button-text: #ffffff;
+
+    /* Error Colors */
+     --error-color: var(--danger-color);
+     --error-bg-color: #f8d7da;
+     --error-color-rgb: 220, 53, 69; /* For rgba */
+
+    /* Layout Variables */
+    --header-height: 65px;
+    --footer-height: auto; /* Auto height for footer */
+    --container-max-width: 1140px;
+    --base-font-size: 16px;
+    --base-line-height: 1.6;
+    --base-font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+}
+
+/* --- Basic Reset & Body --- */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    font-size: var(--base-font-size);
+    scroll-behavior: smooth;
+    height: 100%; /* Needed for sticky footer */
+}
+
+body {
+    font-family: var(--base-font-family);
+    line-height: var(--base-line-height);
+    background-color: var(--background-color);
+    color: var(--text-color);
+    padding-top: var(--header-height); /* Space for fixed header */
+    min-height: 100%; /* Ensure body takes full height */
+    display: flex;
+    flex-direction: column; /* Essential for sticky footer */
+    transition: background-color 0.3s ease, color 0.3s ease; /* Smooth theme transition */
+}
+
+main {
+    flex-grow: 1; /* Allows main content to expand, pushing footer down */
+    width: 100%;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* --- Headings & Text --- */
+h1, h2, h3, h4, h5, h6 {
+    color: var(--heading-color);
+    margin-bottom: 0.75rem;
+    font-weight: 600;
+    line-height: 1.3;
+}
+h1 { font-size: 2.25rem; }
+h2 { font-size: 1.8rem; }
+h3 { font-size: 1.5rem; }
+h4 { font-size: 1.25rem; }
+
+p {
+    margin-bottom: 1rem;
+}
+
+a {
+    color: var(--primary-color);
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+a:hover {
+    color: darken(var(--primary-color), 10%); /* Needs SASS/LESS or use filter/opacity */
+    filter: brightness(85%);
+}
+
+/* --- Buttons (General) --- */
+.button {
+    display: inline-block; /* Allows margin/padding */
+    padding: 10px 20px;
+    border: 1px solid transparent; /* Base border */
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 500;
+    text-align: center;
+    vertical-align: middle; /* Align with text/icons */
+    user-select: none; /* Prevent text selection */
+    transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease, transform 0.1s ease, box-shadow 0.1s ease;
+    background-color: var(--secondary-button-bg);
+    color: var(--secondary-button-text);
+}
+.button:hover {
+    filter: brightness(90%);
+    transform: translateY(-1px);
+}
+.button:active {
+     transform: translateY(0px);
+     filter: brightness(80%);
+}
+.button:disabled {
+    opacity: 0.65;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.primary-button {
+    background-color: var(--primary-button-bg);
+    color: var(--button-text-color);
+    border-color: var(--primary-button-bg);
+}
+.primary-button:hover {
+     background-color: darken(var(--primary-button-bg), 10%);
+     border-color: darken(var(--primary-button-bg), 10%);
+     filter: brightness(90%);
+}
+
+
+.icon-button {
+    background: none;
+    border: none;
+    color: var(--text-color-secondary);
+    font-size: 1.2rem;
+    cursor: pointer;
+    padding: 5px;
+    line-height: 1; /* Prevent extra space */
+    transition: color 0.2s ease;
+}
+.icon-button:hover {
+    color: var(--primary-color);
+}
+
+/* --- Header --- */
+header {
+    background-color: var(--card-bg-color);
+    box-shadow: 0 2px 5px var(--shadow-color);
+    position: fixed; /* Fixed header */
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1030; /* High z-index */
+    height: var(--header-height);
+    display: flex;
+    align-items: center;
+    transition: background-color 0.3s ease;
+}
+
+.header-container {
+    max-width: var(--container-max-width);
+    width: 100%;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header-left, .header-right {
+    display: flex;
+    align-items: center;
+    gap: 15px; /* Spacing between items */
+}
+
+.website-name {
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: var(--heading-color);
+    margin-right: 25px; /* Space between name and nav */
+}
+.website-name:hover {
+    color: var(--primary-color);
+    filter: none; /* Remove hover filter from link */
+}
+
+header nav {
+    display: flex;
+    align-items: center;
+    gap: 25px; /* Spacing between nav items */
+}
+
+header nav a {
+    color: var(--text-color);
+    font-weight: 500;
+    padding-bottom: 5px; /* Space for underline */
+    position: relative; /* For underline pseudo-element */
+}
+header nav a:hover,
+header nav a.active { /* Add 'active' class via JS if needed for current page */
+    color: var(--primary-color);
+}
+
+/* Underline effect on hover */
+header nav a::after {
+     content: '';
+     position: absolute;
+     bottom: 0;
+     left: 0;
+     width: 0;
+     height: 2px;
+     background-color: var(--primary-color);
+     transition: width 0.3s ease;
+}
+ header nav a:hover::after,
+ header nav a.active::after {
+      width: 100%;
+ }
+
+
+/* --- Dropdown Menu --- */
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropbtn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--text-color); /* Same as nav link */
+    font-weight: 500;
+    font-size: 1rem;
+    padding: 5px 0; /* Match nav link padding */
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    transition: color 0.2s ease;
+}
+.dropbtn:hover {
+    color: var(--primary-color);
+}
+.dropbtn i.fa-chevron-down {
+     font-size: 0.8em; /* Smaller chevron */
+     transition: transform 0.2s ease;
+}
+.dropdown:hover .dropbtn i.fa-chevron-down { /* Optional: rotate chevron on hover */
+     /* transform: rotate(180deg); */
+}
+
+
+.dropdown-content {
+    display: none; /* Hidden by default, shown by JS */
+    position: absolute;
+    background-color: var(--card-bg-color);
+    min-width: 190px; /* Wider dropdown */
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15); /* Slightly stronger shadow */
+    z-index: 1031; /* Above header content */
+    border-radius: 6px;
+    overflow: hidden;
+    margin-top: 8px; /* Space below button */
+    right: 0; /* Align dropdown to the right */
+    border: 1px solid var(--border-color);
+}
+
+.dropdown-content a {
+    color: var(--text-color);
+    padding: 10px 20px; /* Adjust padding */
+    text-decoration: none;
+    display: block;
+    font-size: 0.95rem;
+    white-space: nowrap; /* Prevent wrapping */
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.dropdown-content a:hover {
+    background-color: var(--primary-color);
+    color: #ffffff;
+    filter: none;
+}
+
+
+/* --- Home Page Specific Styles --- */
+
+/* Hero Section */
+.hero {
+    text-align: center;
+    padding: 70px 20px;
+    background: linear-gradient(45deg, var(--primary-color), var(--accent-color)); /* Example gradient */
+    color: white;
+    margin-bottom: 30px; /* Space below hero */
+}
+.hero h1 {
+     color: white;
+     font-size: 2.8rem;
+     margin-bottom: 15px;
+     font-weight: 700;
+}
+.hero p {
+     font-size: 1.25rem;
+     color: rgba(255, 255, 255, 0.95);
+     max-width: 700px; /* Limit width */
+     margin: 0 auto; /* Center paragraph */
+}
+
+/* Tools Section */
+.tools-section {
+    padding: 40px 20px;
+    text-align: center;
+    max-width: var(--container-max-width);
+    margin: 0 auto; /* Center section */
+}
+.tools-section h2 {
+     margin-bottom: 50px;
+     font-size: 2rem;
+}
+
+/* Tool Grid Layout */
+.tool-grid {
+    display: grid;
+    /* Flexible grid: fit as many 200px columns as possible */
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 35px; /* Gap between grid items */
+    padding: 0 10px; /* Padding for the grid itself */
+    justify-items: center; /* Center items horizontally within their grid cell */
+    align-items: center; /* Center items vertically */
+}
+
+/* Common Tool Card Styling */
+.tool-card {
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 25px;
+    background-color: var(--card-bg-color);
+    border: 1px solid var(--border-color);
+    box-shadow: 0 4px 8px var(--shadow-color);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+    width: 200px; /* Base width */
+    height: 200px; /* Base height */
+    position: relative; /* For potential pseudo-elements or badges */
+    border-radius: 10px; /* Default radius */
+}
+.tool-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.18);
+}
+
+/* Hexagon Shape */
+.tool-card.hexagon {
+    width: 200px;
+    height: 230px; /* Height for hexagon proportions */
+    clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+    padding: 40px 20px; /* Adjust padding for content */
+    border-radius: 0; /* Remove radius when using clip-path */
+     border: none; /* Remove border if clip-path looks odd with it */
+}
+
+/* Rectangle Shape */
+.tool-card.rectangle {
+    width: 220px; /* Slightly wider */
+    height: 160px; /* Adjust height */
+    border-radius: 15px; /* More pronounced rounding */
+}
+
+/* Content inside Tool Cards */
+.tool-card i { /* Icon styling */
+    font-size: 3.5rem; /* Larger icons */
+    margin-bottom: 15px;
+    color: var(--primary-color); /* Use primary color for icons */
+    transition: transform 0.3s ease;
+}
+.tool-card:hover i {
+    transform: scale(1.1); /* Slight scale effect on hover */
+}
+
+.tool-card h3 { /* Tool title */
+    font-size: 1.15rem;
+    font-weight: 600;
+    margin: 0;
+    color: var(--heading-color);
+}
+
+
+/* Features Overview Section */
+.features-overview {
+     padding: 50px 20px;
+     background-color: var(--light-color); /* Use light color background */
+     text-align: center;
+     margin-top: 40px; /* Space above this section */
+}
+.features-overview h2 {
+      margin-bottom: 40px;
+     font-size: 2rem;
+}
+.features-overview ul {
+     list-style: none;
+     padding: 0;
+     display: flex;
+     justify-content: center;
+     flex-wrap: wrap;
+     gap: 30px 40px; /* Row and column gap */
+}
+.features-overview li {
+     display: flex;
+     align-items: center;
+     gap: 12px;
+     font-size: 1.1rem;
+     color: var(--text-color);
+     background-color: var(--card-bg-color); /* Put features in cards */
+     padding: 15px 25px;
+     border-radius: 8px;
+     box-shadow: 0 2px 5px var(--shadow-color);
+}
+.features-overview li i {
+     color: var(--success-color); /* Use success color for feature icons */
+     font-size: 1.6rem;
+}
+
+
+/* --- Footer --- */
+footer {
+    background-color: var(--footer-bg-color); /* #212529 as requested */
+    color: var(--footer-text-color); /* Light text */
+    text-align: center;
+    padding: 25px 20px; /* Increased padding */
+    margin-top: auto; /* Pushes footer to bottom */
+    /* height: var(--footer-height); --- Let height be auto */
+    font-size: 0.9rem;
+    line-height: 1.5;
+}
+
+footer p {
+    margin: 5px 0; /* Space between paragraphs */
+}
+
+footer a { /* Style links in footer if any */
+    color: var(--footer-link-color);
+    text-decoration: underline;
+}
+footer a:hover {
+     color: #ffffff; /* Brighter white on hover */
+     filter: none;
+}
+
+
+/* --- Responsiveness --- */
+
+/* Medium screens (Tablets, smaller desktops) */
+@media (max-width: 992px) {
+    :root {
+        --header-height: 60px; /* Slightly smaller header */
+    }
+    .header-container {
+        padding: 0 15px;
+    }
+     .website-name { font-size: 1.4rem; margin-right: 15px;}
+     header nav { gap: 15px; }
+     .hero h1 { font-size: 2.5rem; }
+     .hero p { font-size: 1.15rem; }
+     .tool-grid { gap: 25px; }
+}
+
+/* Small screens (Tablets in portrait, large phones) */
+@media (max-width: 768px) {
+    :root {
+        --base-font-size: 15px; /* Slightly smaller base font */
+    }
+    /* Stack header items */
+    .header-container {
+        flex-direction: column;
+        height: auto;
+        padding: 10px;
+    }
+    header {
+        position: static; /* Remove fixed position */
+        height: auto;
+    }
+     body {
+         padding-top: 0; /* Remove body padding */
+     }
+    .header-left, .header-right {
+        width: 100%;
+        justify-content: space-between;
+        margin-bottom: 10px;
+    }
+     .header-left { order: 2;}
+     .header-right { order: 1;}
+    header nav {
+        width: 100%;
+        justify-content: center;
+        margin-top: 5px;
+        gap: 15px;
+    }
+     .dropdown-content { /* Adjust dropdown position */
+         right: auto;
+         left: 50%;
+         transform: translateX(-50%);
+         margin-top: 5px;
+     }
+
+
+    .hero { padding: 50px 15px; }
+    .hero h1 { font-size: 2rem; }
+    .hero p { font-size: 1rem; }
+
+    .tools-section h2, .features-overview h2 { font-size: 1.8rem; margin-bottom: 30px;}
+
+    .tool-grid {
+         grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+         gap: 20px;
+    }
+    .tool-card { width: 160px; height: 160px; padding: 20px;}
+    .tool-card.hexagon { width: 160px; height: 185px; padding: 30px 15px;}
+    .tool-card.rectangle { width: 180px; height: 130px;}
+    .tool-card i { font-size: 3rem; }
+    .tool-card h3 { font-size: 1rem; }
+
+    .features-overview ul { flex-direction: column; align-items: center; gap: 15px;}
+    .features-overview li { font-size: 1rem; padding: 12px 20px;}
+    .features-overview li i { font-size: 1.4rem; }
+
+    footer { padding: 20px 15px; font-size: 0.85rem;}
+}
+
+/* Extra small screens (Phones) */
+@media (max-width: 480px) {
+     .header-left .button, .header-right .button {
+        padding: 8px 12px;
+        font-size: 0.9rem;
+    }
+    .website-name { font-size: 1.3rem; }
+    header nav { gap: 10px; }
+    header nav a, .dropbtn { font-size: 0.9rem; }
+
+    .hero h1 { font-size: 1.8rem; }
+    .hero p { font-size: 0.95rem; }
+
+    .tool-grid {
+         /* Stack in single column */
+         grid-template-columns: 1fr;
+         max-width: 300px; /* Limit width of single column grid */
+         margin-left: auto;
+         margin-right: auto;
+         gap: 25px;
+    }
+    .tool-card, .tool-card.hexagon, .tool-card.rectangle {
+        width: 100%; /* Full width in single column */
+        height: auto; /* Auto height */
+        min-height: 150px;
+        padding: 25px 15px;
+    }
+    /* Optional: Remove hexagon shape on very small screens for simplicity */
+    .tool-card.hexagon {
+         /* clip-path: none; */
+         /* border-radius: 10px; */
+    }
+     .tool-card i { font-size: 2.8rem; }
+
+     .features-overview li { width: 90%; justify-content: center; }
+}

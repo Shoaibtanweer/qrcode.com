@@ -1,0 +1,146 @@
+/* --- Dark Mode Styles --- */
+
+/* Apply styles when body has the .dark-mode class */
+body.dark-mode {
+    /* --- Override Root Variables --- */
+    --primary-color: #58a6ff; /* Lighter Blue */
+    --primary-color-rgb: 88, 166, 255; /* RGB for rgba() */
+    --secondary-color: #8b949e; /* Lighter Gray */
+    --accent-color: #50e3c2;  /* Keep Teal or adjust */
+    --success-color: #56d364; /* Lighter Green */
+    --warning-color: #eac54f; /* Lighter Yellow */
+    --danger-color: #f85149; /* Lighter Red */
+    --light-color: #373e47; /* Darker Light Color */
+    --dark-color: #c9d1d9; /* Lighter Dark Color (used for text maybe) */
+
+    --background-color: #161b22; /* Very Dark Background */
+    --card-bg-color: #21262d;    /* Slightly lighter card/header/footer background */
+    --text-color: #c9d1d9;       /* Light Gray Text */
+    --text-color-secondary: #8b949e; /* Medium Gray Text */
+    --heading-color: #f0f6fc;      /* Off-White Heading */
+    --border-color: #30363d;       /* Darker Border */
+    --input-bg-color: #0d1117;    /* Very Dark Input Background */
+    --shadow-color: rgba(0, 0, 0, 0.4); /* More prominent shadow */
+
+    /* Footer Specific Overrides (if needed, but uses variables) */
+    /* --footer-bg-color: #1c2128; /* Example: Slightly different dark */
+    /* --footer-text-color: rgba(201, 209, 217, 0.75); */
+    /* --footer-link-color: rgba(201, 209, 217, 0.9); */
+     /* Using #212529 as requested for footer bg in light mode, let's make it slightly different in dark */
+     --footer-bg-color: #1c2128; /* Slightly different dark from main dark bg */
+     --footer-text-color: rgba(139, 148, 158, 0.85); /* Lighter than default secondary text */
+     --footer-link-color: rgba(139, 148, 158, 1);
+
+    /* Button Colors */
+    --button-text-color: #ffffff; /* Usually white text on colored buttons */
+    --primary-button-bg: var(--primary-color);
+    --secondary-button-bg: #373e47; /* Darker Gray Button */
+    --secondary-button-text: #c9d1d9;
+
+    /* Error Colors */
+     --error-color: var(--danger-color);
+     --error-bg-color: rgba(var(--danger-color-rgb, 248, 81, 73), 0.1); /* Use RGB */
+     --error-color-rgb: 248, 81, 73;
+
+    /* --- Specific Element Overrides (If Variables Aren't Enough) --- */
+
+    /* Example: Slightly different hover for links */
+    a:hover {
+        filter: brightness(115%);
+    }
+
+    /* Header/Footer specific background if needed */
+    header {
+        background-color: var(--card-bg-color);
+        box-shadow: 0 2px 5px var(--shadow-color);
+    }
+    footer {
+         background-color: var(--footer-bg-color);
+         color: var(--footer-text-color);
+    }
+     footer a { color: var(--footer-link-color); }
+     footer a:hover { color: #ffffff; }
+
+    /* Dropdown Content */
+    .dropdown-content {
+        background-color: var(--card-bg-color);
+        box-shadow: 0 8px 20px var(--shadow-color);
+        border: 1px solid var(--border-color);
+    }
+    .dropdown-content a {
+        color: var(--text-color);
+    }
+    .dropdown-content a:hover {
+        background-color: var(--primary-color); /* Use primary color for hover */
+        color: #ffffff;
+    }
+
+     /* Tool Card Hover */
+     .tool-card:hover {
+         box-shadow: 0 10px 20px var(--shadow-color);
+         border-color: var(--border-color); /* Ensure border is visible */
+     }
+      .tool-card.hexagon {
+          border: none; /* Keep border none for hexagon */
+      }
+
+     /* Feature Overview Section */
+     .features-overview {
+         background-color: var(--card-bg-color); /* Use card bg for this section */
+     }
+     .features-overview li {
+          background-color: var(--background-color); /* Use main dark bg for list items */
+          color: var(--text-color);
+          box-shadow: 0 2px 5px var(--shadow-color);
+     }
+     .features-overview li i {
+         color: var(--success-color);
+     }
+
+     /* Input focus glow */
+    .form-control:focus,
+    .input-section input:focus,
+    .input-section textarea:focus {
+        box-shadow: 0 0 0 3px rgba(var(--primary-color-rgb, 88, 166, 255), 0.3);
+        border-color: var(--primary-color); /* Ensure border color changes too */
+    }
+
+    /* Tool page description */
+    .tool-description {
+        background-color: rgba(var(--primary-color-rgb, 88, 166, 255), 0.1);
+        border-left-color: var(--primary-color);
+        color: var(--text-color);
+    }
+
+    /* Preview Box */
+    .preview-box {
+         background-color: var(--background-color); /* Use main dark bg */
+         border-color: var(--border-color);
+    }
+
+    /* Ensure QR Code Background remains white */
+    #qr-code-result {
+         background-color: white !important; /* Force white for readability */
+    }
+
+
+    /* --- Specific Button Hovers --- */
+    .button:not(:disabled):hover {
+        filter: brightness(115%);
+    }
+    .primary-button:not(:disabled):hover {
+        background-color: lighten(var(--primary-button-bg), 5%);
+        border-color: lighten(var(--primary-button-bg), 5%);
+        filter: brightness(110%);
+    }
+     .secondary-button:not(:disabled):hover,
+     .download-btn:not(:disabled):hover {
+         background-color: lighten(var(--secondary-button-bg), 5%);
+         filter: brightness(115%);
+     }
+
+      /* File input button hover */
+     .input-section input[type="file"]::file-selector-button:hover {
+        filter: brightness(115%);
+     }
+}

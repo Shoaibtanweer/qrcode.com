@@ -1,0 +1,452 @@
+/* --- Styles specific to QR Tool Pages --- */
+
+/* --- Main Tool Container Layout --- */
+.tool-container {
+    max-width: 950px; /* Max width for the tool area */
+    margin: 30px auto; /* Center the container with margin top/bottom */
+    padding: 25px 30px; /* Padding inside the container */
+    background-color: var(--card-bg-color);
+    border-radius: 12px; /* Slightly larger radius */
+    box-shadow: 0 4px 12px var(--shadow-color);
+    display: grid;
+    /* Two equal columns by default */
+    grid-template-columns: 1fr 1fr;
+    gap: 30px 40px; /* Row gap, Column gap */
+    transition: background-color 0.3s ease; /* Smooth transition for dark mode */
+}
+
+/* --- Section Headings --- */
+.input-section h2,
+.preview-section h3, /* Target preview h3 specifically */
+.options-section h3,
+.download-options h3 {
+    margin-top: 0; /* Remove top margin for section headings */
+    margin-bottom: 18px;
+    color: var(--heading-color);
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 12px;
+    font-size: 1.4rem; /* Slightly larger heading */
+    display: flex; /* Align icon and text */
+    align-items: center;
+    gap: 10px; /* Space between icon and text */
+}
+.download-options h3 {
+     border-bottom: none; /* No border for download heading */
+     margin-bottom: 10px;
+     justify-content: center; /* Center download heading */
+     font-size: 1.2rem;
+}
+
+/* Tool Description Paragraph */
+.tool-description {
+    font-size: 0.95rem;
+    color: var(--text-color-secondary);
+    margin-bottom: 20px;
+    padding: 12px 15px;
+    background-color: rgba(var(--primary-color-rgb, 74, 144, 226), 0.08); /* Use RGB or fallback */
+    border-left: 4px solid var(--primary-color);
+    border-radius: 4px;
+    line-height: 1.5;
+}
+/* Add primary color RGB to :root in style.css if needed */
+/* :root { --primary-color-rgb: 74, 144, 226; } */
+/* body.dark-mode { --primary-color-rgb: 88, 166, 255; } */
+body.dark-mode .tool-description {
+     background-color: rgba(var(--primary-color-rgb, 88, 166, 255), 0.1);
+     border-left-color: var(--primary-color);
+     color: var(--text-color);
+}
+
+/* --- Input Section & Form Elements --- */
+.input-section {
+    /* Styles for the left column */
+    padding-right: 10px; /* Add some space to the right */
+}
+
+.form-group {
+    margin-bottom: 18px; /* Space below each form group */
+}
+
+.input-section label {
+    display: block;
+    margin-bottom: 6px;
+    font-weight: 600; /* Slightly bolder label */
+    font-size: 0.9rem;
+    color: var(--text-color-secondary);
+}
+
+/* Common styles for text-based inputs and textarea */
+.form-control,
+.input-section input[type="number"],
+.input-section input[type="text"],
+.input-section input[type="url"],
+.input-section textarea {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    background-color: var(--input-bg-color);
+    color: var(--text-color);
+    font-size: 1rem;
+    line-height: 1.5;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+.form-control:focus,
+.input-section input:focus,
+.input-section textarea:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(var(--primary-color-rgb, 74, 144, 226), 0.25);
+}
+body.dark-mode .form-control:focus,
+body.dark-mode .input-section input:focus,
+body.dark-mode .input-section textarea:focus {
+     box-shadow: 0 0 0 3px rgba(var(--primary-color-rgb, 88, 166, 255), 0.3);
+}
+
+/* Specific style for file input container */
+.input-section input[type="file"] {
+    width: 100%;
+    padding: 8px 10px; /* Adjust padding */
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    background-color: var(--input-bg-color);
+    color: var(--text-color-secondary); /* Text like 'No file chosen' */
+    font-size: 0.9rem;
+    cursor: pointer; /* Indicate it's clickable */
+}
+/* Styling the file input button (browser specific) */
+.input-section input[type="file"]::file-selector-button {
+    background-color: var(--secondary-button-bg);
+    color: var(--secondary-button-text);
+    border: none;
+    padding: 8px 15px;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-right: 10px;
+    font-weight: 500;
+    font-size: 0.9rem;
+    transition: background-color 0.2s ease;
+}
+.input-section input[type="file"]::file-selector-button:hover {
+   background-color: darken(var(--secondary-button-bg), 10%); /* Use a function if using SASS/LESS, otherwise hardcode */
+    filter: brightness(90%); /* Simple hover effect */
+}
+body.dark-mode .input-section input[type="file"]::file-selector-button {
+   background-color: var(--secondary-button-bg);
+   color: var(--secondary-button-text);
+}
+ body.dark-mode .input-section input[type="file"]::file-selector-button:hover {
+     filter: brightness(115%);
+ }
+
+
+/* --- Customization Options Section --- */
+.options-section {
+    margin-top: 25px;
+    padding-top: 20px;
+    border-top: 1px dashed var(--border-color); /* Dashed separator */
+}
+
+.option-group {
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    gap: 12px; /* Space between label and input */
+    flex-wrap: wrap; /* Allow wrapping */
+}
+
+.option-group label {
+    margin-bottom: 0; /* Remove default margin */
+    flex-shrink: 0;
+    color: var(--text-color); /* Standard text color */
+    font-weight: 500;
+    font-size: 0.9rem;
+}
+
+.option-group input[type="color"] {
+    width: 35px; /* Compact size */
+    height: 35px;
+    padding: 2px;
+    border: 1px solid var(--border-color);
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: var(--input-bg-color);
+    vertical-align: middle;
+    margin-bottom: 0;
+    /* Remove browser default appearance if needed */
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+/* Style the color picker indicator */
+.option-group input[type="color"]::-webkit-color-swatch-wrapper {
+    padding: 0;
+}
+.option-group input[type="color"]::-webkit-color-swatch {
+    border: none;
+    border-radius: 4px;
+}
+.option-group input[type="color"]::-moz-color-swatch {
+    border: none;
+    border-radius: 4px;
+}
+
+
+.option-group small { /* Style for '(Coming Soon)' text */
+     font-size: 0.8rem;
+     color: var(--text-color-secondary);
+     margin-left: 5px;
+}
+
+.option-group.logo-option[title] { /* Style for disabled look */
+     opacity: 0.6;
+     cursor: not-allowed;
+}
+
+/* --- Action Area (Button, Loading, Error) --- */
+.action-area {
+    margin-top: 25px;
+    text-align: center; /* Center button and indicators */
+}
+
+#generate-btn {
+    width: auto; /* Don't force full width */
+    padding: 12px 30px; /* Larger padding */
+    font-size: 1.1rem;
+    min-width: 200px; /* Ensure decent width */
+}
+#generate-btn i {
+     margin-right: 8px;
+}
+
+/* Loading Indicator */
+.loading-indicator {
+    margin-top: 15px;
+    color: var(--primary-color);
+    font-size: 1rem;
+    font-weight: 500;
+    display: flex; /* Use flex to center icon and text */
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+.loading-indicator i.fa-spin {
+    /* Animation is handled by Font Awesome class */
+    font-size: 1.2rem;
+}
+
+/* Error Message Box */
+.error-message {
+    margin-top: 15px;
+    color: var(--error-color);
+    background-color: var(--error-bg-color);
+    padding: 12px 15px;
+    border-radius: 6px;
+    border: 1px solid rgba(var(--error-color-rgb, 220, 53, 69), 0.5); /* Use RGB or fallback */
+    font-weight: 500;
+    font-size: 0.95rem;
+    text-align: left; /* Align text left for readability */
+}
+/* Add error color RGB to :root in style.css */
+/* :root { --error-color-rgb: 220, 53, 69; } */
+/* body.dark-mode { --error-color-rgb: 248, 81, 73; } */
+body.dark-mode .error-message {
+     border-color: rgba(var(--error-color-rgb, 248, 81, 73), 0.5);
+}
+
+
+/* --- Preview Section --- */
+.preview-section {
+    /* Styles for the right column */
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center items vertically */
+    text-align: center;
+}
+
+.preview-box {
+    width: 100%;
+    max-width: 320px; /* Max width for QR code area */
+    min-height: 320px; /* Ensure space even when empty */
+    margin: 10px auto 25px auto; /* Center box and add margin */
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 15px;
+    background-color: var(--background-color); /* Slightly different background */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative; /* For potential overlays later */
+    overflow: hidden; /* Ensure QR doesn't overflow padding */
+}
+body.dark-mode .preview-box {
+     background-color: var(--input-bg-color); /* Darker background in dark mode */
+}
+
+
+/* Placeholder Styling */
+#qr-code-placeholder {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column; /* Stack icon and text */
+    align-items: center;
+    justify-content: center;
+    color: var(--text-color-secondary);
+    font-size: 1rem;
+    padding: 20px; /* Padding inside placeholder */
+}
+#qr-code-placeholder .placeholder-icon {
+    font-size: 4rem; /* Large icon */
+    margin-bottom: 15px;
+    opacity: 0.5;
+}
+
+/* Generated QR Code Image */
+#qr-code-result {
+    display: block; /* Remove extra space below image */
+    max-width: 100%; /* Ensure it fits within preview-box */
+    height: auto;
+    /* Add a subtle border if needed */
+    /* border: 1px solid var(--border-color); */
+    /* Background MUST remain white (or light color) for QR readability, even in dark mode */
+    background-color: white;
+    padding: 5px; /* Small padding around the QR code inside the img frame if needed */
+    border-radius: 4px;
+}
+
+/* --- Download Options --- */
+.download-options {
+    margin-top: auto; /* Push download options to the bottom of the column */
+    width: 100%;
+    padding-top: 20px;
+    border-top: 1px dashed var(--border-color); /* Separator line */
+}
+
+.download-btn {
+    min-width: 90px; /* Slightly wider download buttons */
+    margin: 5px 8px; /* Spacing around buttons */
+    padding: 8px 15px; /* Adjust padding */
+    font-size: 0.9rem;
+    background-color: var(--secondary-button-bg);
+    color: var(--secondary-button-text);
+}
+.download-btn i {
+     margin-right: 6px;
+}
+.download-btn:disabled {
+     opacity: 0.5;
+     cursor: not-allowed;
+}
+.download-btn:not(:disabled):hover {
+    filter: brightness(90%); /* Simple hover effect */
+}
+body.dark-mode .download-btn:not(:disabled):hover {
+     filter: brightness(115%);
+}
+
+
+/* --- Responsiveness --- */
+
+/* Medium screens (Tablets) */
+@media (max-width: 992px) {
+    .tool-container {
+        max-width: 720px; /* Adjust max width */
+        gap: 25px 30px; /* Reduce gap */
+    }
+    .input-section h2,
+    .preview-section h3,
+    .options-section h3 {
+         font-size: 1.3rem;
+    }
+}
+
+/* Small screens (Mobile) */
+@media (max-width: 768px) {
+    .tool-container {
+        /* Stack columns */
+        grid-template-columns: 1fr;
+        padding: 20px;
+        margin: 20px auto; /* Reduce vertical margin */
+        gap: 30px; /* Single gap value for rows */
+    }
+
+    .input-section {
+        padding-right: 0; /* Remove extra padding */
+        order: 2; /* Input section below preview on mobile */
+    }
+
+    .preview-section {
+        order: 1; /* Preview section first on mobile */
+    }
+
+    .preview-box {
+        max-width: 280px; /* Adjust QR preview size */
+        min-height: 280px;
+    }
+    #qr-code-placeholder .placeholder-icon {
+        font-size: 3rem;
+    }
+
+    .download-options {
+         margin-top: 25px; /* Add margin when stacked */
+    }
+
+     .input-section h2,
+     .preview-section h3,
+     .options-section h3 {
+         font-size: 1.2rem; /* Smaller headings */
+         margin-bottom: 15px;
+         padding-bottom: 10px;
+     }
+     .download-options h3 {
+         font-size: 1.1rem;
+     }
+
+     #generate-btn {
+         padding: 10px 25px;
+         font-size: 1rem;
+         min-width: 180px;
+     }
+     .download-btn {
+        min-width: 80px;
+        padding: 7px 12px;
+        font-size: 0.85rem;
+        margin: 4px;
+     }
+}
+
+/* Extra small screens */
+@media (max-width: 480px) {
+     .tool-container {
+         padding: 15px;
+         margin: 15px auto;
+     }
+     .preview-box {
+        max-width: 240px;
+        min-height: 240px;
+    }
+     #qr-code-placeholder .placeholder-icon {
+        font-size: 2.5rem;
+    }
+     #qr-code-placeholder span {
+         font-size: 0.9rem;
+     }
+
+     .form-control,
+     .input-section input,
+     .input-section textarea {
+        padding: 10px 12px;
+        font-size: 0.95rem;
+     }
+
+     #generate-btn {
+         width: 100%; /* Full width button on very small screens */
+         min-width: unset;
+     }
+     .download-btn {
+         width: calc(50% - 10px); /* Two buttons per row roughly */
+         min-width: unset;
+     }
+}
