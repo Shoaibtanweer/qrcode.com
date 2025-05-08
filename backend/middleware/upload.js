@@ -39,7 +39,7 @@ const storage = new CloudinaryStorage({
             folderName = 'qr-code-uploads/pdfs';
              // For PDFs, Cloudinary often treats them as 'image' for transformations or 'raw' for direct storage.
              // 'raw' is safer if no transformations needed. 'image' might allow page previews. Let's use 'image' for broader compatibility initially.
-            resourceType = 'image'; // Could also be 'raw'
+            resourceType = 'raw'; // Could also be 'raw'not 'image'
         }
 
          console.log(`Uploading ${file.originalname} to Cloudinary folder: ${folderName}, resource_type: ${resourceType}`);
