@@ -12,6 +12,9 @@ const dotenv = require('dotenv');        // NEW: For .env file
 dotenv.config({ path: path.join(__dirname, '../.env') }); // Load .env before accessing process.env
 console.log("✅ Loaded .env file from:", path.join(__dirname, '../.env'));
 
+// --- sitemap.xml Connection ---
+app.use(express.static(path.join(__dirname, '../public')));
+
 // --- Import Routes ---
 const qrRoutes = require('./routes/qrRoutes');
 const authRoutes = require('./routes/authRoutes'); // NEW: Auth Routes
