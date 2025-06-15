@@ -16,10 +16,10 @@ console.log("✅ Loaded .env file from:", path.join(__dirname, '../.env'));
 // app.use(express.static(path.join(__dirname, 'public')));
 
 // 👉 Serve sitemap with correct Content-Type
-app.get('/sitemap.xml', (req, res) => {
-  res.set('Content-Type', 'application/xml');
-  res.sendFile(path.join(__dirname, 'public', 'sitemap.xml'));
-});
+// app.get('/sitemap.xml', (req, res) => {
+//   res.set('Content-Type', 'application/xml');
+//   res.sendFile(path.join(__dirname, 'public', 'sitemap.xml'));
+// });
 
 // --- Import Routes ---
 const qrRoutes = require('./routes/qrRoutes');
